@@ -1,0 +1,12 @@
+apiVersion: kube-green.com/v1alpha1
+kind: SleepInfo
+metadata:
+  name: suspend-cronjobs
+spec:
+  weekdays: "1-5"
+  sleepAt: "19:26"
+  wakeUpAt: "19:27"
+  timeZone: "Europe/Paris"
+  suspendDeployments: false
+  suspendStatefulSets: false
+  suspendCronJobs: true

@@ -1,0 +1,1 @@
+kubectl apply -f sleepinfos/suspend-labels.yaml -n demo-app --context kind-demo

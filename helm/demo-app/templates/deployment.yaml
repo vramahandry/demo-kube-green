@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-app-deploy-a
+  labels:
+    {{- include "demo-app.labels" . | nindent 4 }}
+    app.kubernetes.io/component: deploy-a
+    {{- with .Values.deployment.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "demo-app.labels" . | nindent 6 }}
+      app.kubernetes.io/component: deploy-a
+  template:
+    metadata:
+      labels:
+        {{- include "demo-app.labels" . | nindent 8 }}
+        app.kubernetes.io/component: deploy-a
+        {{- with .Values.deployment.labels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      containers:
+        - name: {{ include "demo-app.name" . }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          command: ["sleep", "infinity"]

@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: demo-app-cronjob-a
+  labels:
+    {{- include "demo-app.labels" . | nindent 4 }}
+    {{- with .Values.cronjob.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+spec:
+  schedule: {{ .Values.cronjob.schedule | quote }}
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            {{- include "demo-app.labels" . | nindent 12 }}
+            {{- with .Values.cronjob.labels }}
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
+        spec:
+          containers:
+            - name: {{ include "demo-app.name" . }}
+              image: "{{ .Values.cronjob.image.repository }}:{{ .Values.cronjob.image.tag }}"
+              command: ["echo", "hello from demo-app"]
+          restartPolicy: OnFailure

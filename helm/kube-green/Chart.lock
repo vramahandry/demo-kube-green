@@ -1,0 +1,6 @@
+dependencies:
+- name: kube-green
+  repository: https://kube-green.github.io/helm-charts/
+  version: 0.7.1
+digest: sha256:b3553065af5d132f582a231572141ee2ac8c08b741bbed805c108652dd1ced06
+generated: "2026-11-01T10:47:19.73274+01:00"

@@ -1,0 +1,9 @@
+apiVersion: kube-green.com/v1alpha1
+kind: SleepInfo
+metadata:
+  name: suspend-default
+spec:
+  weekdays: "1-5"
+  sleepAt: "19:18"
+  wakeUpAt: "19:19"
+  timeZone: "Europe/Paris"

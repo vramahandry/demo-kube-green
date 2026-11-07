@@ -1,0 +1,23 @@
+apiVersion: kube-green.com/v1alpha1
+kind: SleepInfo
+metadata:
+  name: suspend-patches
+spec:
+  weekdays: "1-5"
+  sleepAt: "20:04"
+  wakeUpAt: "20:05"
+  timeZone: "Europe/Paris"
+  suspendDeployments: false
+  suspendStatefulSets: false
+  suspendCronJobs: true
+  includeRef:
+    - matchLabels: 
+        app.kubernetes.io/component: deploy-a
+  patches:
+    - target:
+        group: apps
+        kind: ReplicaSet
+      patch: |-
+        - path: /spec/replicas
+          op: add
+          value: 1

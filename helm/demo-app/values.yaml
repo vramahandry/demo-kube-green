@@ -1,0 +1,21 @@
+replicaCount: 2
+
+image:
+  repository: busybox
+  tag: "stable"
+
+deployment:
+  labels: {}
+
+deploymentB:
+  labels: {}
+
+statefulset:
+  labels: {}
+
+cronjob:
+  schedule: "*/2 * * * *"
+  labels: {}
+  image:
+    repository: busybox
+    tag: "stable"

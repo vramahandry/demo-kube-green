@@ -1,0 +1,15 @@
+apiVersion: kube-green.com/v1alpha1
+kind: SleepInfo
+metadata:
+  name: suspend-labels
+spec:
+  weekdays: "1-5"
+  sleepAt: "19:44"
+  wakeUpAt: "19:45"
+  timeZone: "Europe/Paris"
+  suspendDeployments: true
+  suspendStatefulSets: false
+  suspendCronJobs: true
+  excludeRef:
+    - matchLabels: 
+        app.kubernetes.io/component: deploy-b
